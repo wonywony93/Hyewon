@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+	function idCheck(){
+		alert(frm.id.value);
+	}
+	function result(){
+		if(!frm.id.value){
+			alert("아이디를 입력하세요");
+			return false;
+		}
+		if(!frm.pw.value){
+			alert("패스워드를 입력하세요");
+			return false;
+		}
+	}
+	</script>
+</head>
+<body>
+<h1>회원가입</h1>
+<form name="frm" action="ex02.jsp" onsubmit="return result();">
+<p>
+id:<input type="text" name="id" value=""/>
+<input type="button" value="체크" onclick="idCheck();"/>
+</p>
+<p>
+pw:<input type="password" name="pw" value=""/>
+</p>
+<p>
+<input type="submit" value="로그인"/>
+<input type="reset" value="취 소"/>
+</p>
+</form>
+</body>
+</html>
