@@ -34,9 +34,17 @@ public class DetailController {
 	
 	@RequestMapping(value="/guest/{idx}",method=RequestMethod.PUT)
 	public String edit(@PathVariable int idx,@ModelAttribute GuestVo bean) throws Exception {
-		//guestDao.updateOne(bean);
+		guestDao.updateOne(bean);
 		log.debug("PUT"+bean);
 		return "redirect:/guest/"+idx;
+	}
+	
+	
+	@RequestMapping(value="/guest/{idx}",method=RequestMethod.DELETE )
+	public String delete(@PathVariable int idx) throws Exception {
+		log.debug("delete:"+idx);
+		guestDao.deleteOne(idx);
+		return "redirect:/guest/";
 	}
 	
 }

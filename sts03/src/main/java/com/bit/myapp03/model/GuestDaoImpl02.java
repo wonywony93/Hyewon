@@ -38,7 +38,6 @@ public class GuestDaoImpl02 implements GuestDao {
 						rs.getDate(3),
 						rs.getInt(4)
 						);
-				log.debug(rowNum+"¹øÂ°:"+bean);
 				return bean;
 			}
 			
@@ -58,8 +57,6 @@ public class GuestDaoImpl02 implements GuestDao {
 						rs.getDate(3),
 						rs.getInt(4)
 						);
-				log.debug(rowNum==1);
-				log.debug(bean);
 				return bean;
 			}
 			
@@ -84,15 +81,33 @@ public class GuestDaoImpl02 implements GuestDao {
 	}
 
 	@Override
-	public int updateOne(GuestVo bean) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateOne(final GuestVo bean) throws SQLException {
+		final String sql="UPDATE GUEST SET NAME=?,PAY=? WHERE SABUN=?";
+		return JdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, bean.getName());
+				pstmt.setInt(2, bean.getPay());
+				pstmt.setInt(3, bean.getSabun());
+				return pstmt;
+			}
+		});
 	}
 
 	@Override
-	public int deleteOne(int pk) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteOne(final int sabun) throws SQLException {
+		final String sql="DELETE FROM GUEST WHERE SABUN=?";
+		
+		return JdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, sabun);
+				return pstmt;
+			}
+		});
 	}
-
 }

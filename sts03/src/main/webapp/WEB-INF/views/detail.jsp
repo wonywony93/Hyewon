@@ -18,6 +18,16 @@
 			$("form>button").show();
 			$(".di").hide();
 		});
+		
+		$("#del").submit(function(e){
+			//e.preventDefault();
+			var result=window.confirm("삭제하시겠습니까?");
+			console.log(result);
+			if(result) return true;
+			return false;
+		});
+		
+		
 	});
 
 </script>
@@ -33,36 +43,35 @@
 </div>
 	
 	
-	<form method="post">
-	
-		<input type="hidden" name="_method" value="put"/>
-	
-		<div class="form-group">
+<form method="post">
+	<input type="hidden" name="_method" value="put">
+	<div class="form-group">
 		<label for="sabun">sabun</label>
 		<div class="well well-sm">${bean.sabun }</div>
-		<input type="hidden" class="form-control"name="sabun" id="sabun" placeholder="sabun"/>
-		</div>
-		<div  class="form-group">
+		<input type="hidden" class="form-control" value="${bean.sabun }" name="sabun" id="sabun" placeholder="sabun" />
+	</div>
+	<div class="form-group">
 		<label for="name">name</label>
 		<div class="well well-sm di">${bean.name }</div>
-		<input type="text" class="form-control" name="name" id="name" placeholder="name"/>
-		</div>
-		<div  class="form-group">
-		<label for="nalja">nalja</label>
-		<div class="well well-sm">${bean.nalja}</div>
-		</div>
-		<div  class="form-group">
+		<input type="text" class="form-control" value="${bean.name }" name="name" id="name" placeholder="name" />
+	</div>
+	<div class="form-group">
+		<label>nalja</label>
+		<div class="well well-sm form-control">${bean.nalja }</div>
+	</div>
+	<div class="form-group">
 		<label for="pay">pay</label>
 		<div class="well well-sm di">${bean.pay }</div>
-		<input type="text"  class="form-control" name="pay" id="pay" placeholder="pay"/>
-		</div>
-	
-		<button type="submit" class="btn btn-danger">수정</button>
-		<button type="reset" class="btn btn-danger">취소</button>
-	</form>
-	
-	
-		<button id="edit" class="btn btn-danger">수정</button>
-	
+		<input type="text" class="form-control" value="${bean.pay }" name="pay" id="pay" placeholder="pay" />
+	</div>
+	<button type="submit" class="btn btn-danger">수정</button>
+	<button type="reset" class="btn btn-default">취소</button>
+</form>
+<button id="edit" class="btn btn-default">수정</button>
+<form method="post" id="del" style="display:inline">
+	<input type="hidden" name="_method" value="delete">
+	<input type="hidden" name="idx" value="${bean.sabun }">
+	<button type="submit" class="btn btn-danger">삭제</button>
+</form>
 </body>
 </html>

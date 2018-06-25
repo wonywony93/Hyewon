@@ -18,9 +18,20 @@
 
 
 
-	<bean id="guestDao" class="com.bit.myapp03.model.GuestDaoImpl02">
-		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 
+
+
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="platformTransactionManager"></property>
+		
+	</bean>
+
+
+
+	<bean id="guestDao" class="com.bit.myapp03.model.GuestDaoImpl02">
+	  
+	<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	
 	</bean>
 
 
